@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { findOneUser } = require('./../db/models/user')
+const { findOneUser,addUser } = require('./../db/models/user')
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
@@ -28,7 +28,19 @@ router.post('/login', function (req, res, next) {
     })
   })
 });
-
-
-
+router.post('/addUser', function (req, res, next) {
+  let {username,password}=req.body;
+  addUser(username,password).then(reso=>{
+    return res.json({
+      'status':1,
+      data:'注册成功'
+    })
+  }).catch(err=>{
+    return res.json({
+      'status':-1,
+      err:'注册失败'
+    })
+  })
+    
+})
 module.exports = router;

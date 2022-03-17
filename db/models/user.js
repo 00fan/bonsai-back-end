@@ -17,9 +17,9 @@ var userSchema = new mongoose.Schema({
 var userconstruct = mongoose.model('user', userSchema);
 
 
-const addUser = function (user, quantity, unit) {//添加，返回promise
+const addUser = function (username,password) {//添加，返回promise
   return new Promise(function (resolve, reject) {
-    let newUser = new userconstruct({ user, quantity, unit });
+    let newUser = new userconstruct({ username, password });
     newUser.save(function (err, product) {
       if (err) {
         reject(err)
