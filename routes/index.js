@@ -36,9 +36,10 @@ router.post('/addUser', function (req, res, next) {
       data:'注册成功'
     })
   }).catch(err=>{
+    console.log(err)
     return res.json({
       'status':-1,
-      err:'注册失败'
+      err
     })
   })
     
